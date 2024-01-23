@@ -1,0 +1,73 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #f6f6f6;
+  background-color: #252525;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+ ::-webkit-scrollbar {
+  width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px;
+  border-radius: 3px;
+  background: #404040;
+}
+
+body {
+  margin: 0;
+}
+
+.button
+{
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  font-family: Segoe UI;
+  margin: 0px 5px 0px 5px
+}
+
+.fileModal {
+  height: 5vh
+}
+
+.editor {
+  height: 95vh;
+  display: flex;
+}
+
+.input,
+.output {
+  overflow: auto;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.input {
+  border: none;
+  border-right: 1px solid rgba(246, 246, 246, 0.25);
+  resize: none;
+  outline: none;
+  color: #f6f6f6;
+  background-color: #252525;
+  font-size: 14px;
+  font-family: 'Arial', courier, monospace;
+  padding: 20px;
+}

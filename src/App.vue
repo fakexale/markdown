@@ -7,9 +7,11 @@ import { invoke } from "@tauri-apps/api/tauri"
 import { marked } from "marked"
 import { ref, computed } from "vue"
 
+import type { Ref, ComputedRef } from "vue"
+
 // i could probably format this better
-const input = ref("# markdown\n\na simple markdown editor.\n\neditor on the right, preview on the left.")
-const output = computed(() => marked(input.value))
+const input: Ref<string> = ref("# markdown\n\na simple markdown editor.\n\neditor on the right, preview on the left.")
+const output: ComputedRef<string | Promise<string>> = computed(() => marked(input.value))
 
 const update = (e: any) => {
   input.value = e.target.value

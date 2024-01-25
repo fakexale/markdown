@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { getVersion, getTauriVersion, getName } from "@tauri-apps/api/app"
-import { save, open, message } from "@tauri-apps/api/dialog"
+import { save, open, message, confirm } from "@tauri-apps/api/dialog"
 import { readTextFile } from "@tauri-apps/api/fs"
 import { invoke } from "@tauri-apps/api/tauri"
+import { ResponseType, fetch } from '@tauri-apps/api/http'
 
 import { marked } from "marked"
 import { ref, computed } from "vue"
@@ -12,6 +13,8 @@ import type { Ref, ComputedRef } from "vue"
 // i could probably format this better
 const input: Ref<string> = ref("# markdown\n\na simple markdown editor.\n\neditor on the right, preview on the left.")
 const output: ComputedRef<string | Promise<string>> = computed(() => marked(input.value))
+
+const httpLink: Ref<string> = ref("")
 
 const update = (e: any) => {
   input.value = e.target.value
@@ -66,6 +69,25 @@ const openAppInfo = async () => {
 
   message(`${name} v${version}\ntauri v${tauriVersion}\n\nby fakexale\nbuilt with tauri and vue `, `About ${name}`);
 }
+
+const requestHttp = async () => {
+  const confirmed = await confirm("If you have any text in editor, it will be replaced by what the HTTP request fetches.\n\nContinue?", { "title": "markdown", "type": "warning" })
+
+  if (!confirmed) {
+    return
+  }
+
+  const request = await fetch(httpLink.value, {
+    method: "GET",
+    timeout: 60,
+    responseType: ResponseType.Text 
+  })
+
+  const result = request.data as string
+  console.log(result)
+
+  input.value = result
+}
 </script>
 
 <template>
@@ -74,6 +96,11 @@ const openAppInfo = async () => {
       <button class="button" @click="readFile">Open</button>
       
       <button class="button" @click="openAppInfo">About</button>
+  </div>
+
+  <div class="requestModal">
+    <input v-model="httpLink" class="textbox" placeholder="Enter a link to fetch markdown from...">
+    <button class="button" @click="requestHttp">Fetch</button>
   </div>
   
   <div class="editor">

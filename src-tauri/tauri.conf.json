@@ -18,7 +18,12 @@
       "dialog": {
         "save": true,
         "open": true,
-        "message": true
+        "message": true,
+        "confirm": true
+      },
+      "http":{
+        "request": true,
+        "scope": ["https://*", "http://*"]
       }
     },
     "bundle": {

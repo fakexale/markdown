@@ -32,8 +32,7 @@ body {
   margin: 0;
 }
 
-.button
-{
+.button {
   border: 1px solid white;
   border-radius: 3px;
   background-color: white;
@@ -42,12 +41,26 @@ body {
   margin: 0px 5px 0px 5px
 }
 
+.textbox {
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  font-family: Segoe UI;
+  margin: 0px 5px 0px 5px;
+  width: 35vw
+}
+
 .fileModal {
   height: 5vh
 }
 
+.requestModal {
+  height: 5vh
+}
+
 .editor {
-  height: 95vh;
+  height: 90vh;
   display: flex;
 }
 
